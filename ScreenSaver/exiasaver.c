@@ -31,28 +31,26 @@ int main(int argc, char *argv[]) {
 	
 	// Si on ne lance que ./exiasaver, un écran aléatoire est chargé
 	if(argc == 1) {
-		if(rdm == 0) {
-			// Enregistre dans l'historique
-			writeHistory("statique");
-			// Affiche l'écran de veille statique
-			sprintf(imgname, "screens/img%d.pbm", rdmimg);
-			cdr = afficheImage(imgname);
-		}
-		else if(rdm == 1) {
-			// Enregistre dans l'historique
-			writeHistory("dynamique");
-			// Affiche l'écran de veille dynamique
-			cdr = dynamique();
-		}
-		else if(rdm == 2) {
-			// Enregistre dans l'historique
-			writeHistory("interactif");
-			// Affiche l'écran de veille interactif
-			cdr = inter();
-		}
-		else {
-			printf("ERREUR, Nombre aléatoire incorrect\n");
-			return 1;
+		switch(rdm){
+			case 0:
+				// Enregistre dans l'historique
+				writeHistory("statique");
+				// Affiche l'écran de veille statique
+				sprintf(imgname, "screens/img%d.pbm", rdmimg);
+				cdr = afficheImage(imgname);
+			case 1:
+				// Enregistre dans l'historique
+				writeHistory("dynamique");
+				// Affiche l'écran de veille dynamique
+				cdr = dynamique();
+			case 2:
+				// Enregistre dans l'historique
+				writeHistory("interactif");
+				// Affiche l'écran de veille interactif
+				cdr = inter();
+			default:
+				printf("ERREUR, Nombre aléatoire incorrect\n");
+				return 1;
 		}
 	}
 	// ./exiasaver a un argument (-stats, -statique, -dynamique, -interactif)
